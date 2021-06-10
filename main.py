@@ -4,6 +4,7 @@ except ImportError:
     pass
 
 from app.chart import Chart
+from app.crypto_iterator import CryptoIterator
 from PIL import Image, ImageDraw, ImageFont
 import os
 
@@ -17,7 +18,9 @@ data = chart.load()
 w, h = 250, 122
 font = ImageFont.truetype(os.path.join('./assets/OpenSans-Bold.ttf'), 14)
 
-for chart in data[2:3]:
+ci = CryptoIterator(data)
+while True:
+    chart = data[ci.get()]
     image = Image.new(mode='1', size=(epd2in13_V2.EPD_HEIGHT, epd2in13_V2.EPD_WIDTH), color=255)
     HRedImage = Image.new(mode='1', size=(epd2in13_V2.EPD_HEIGHT, epd2in13_V2.EPD_WIDTH), color=255)
     draw = ImageDraw.Draw(image)
@@ -34,4 +37,5 @@ for chart in data[2:3]:
     rotated_image = image.rotate(180)
 
     epd.display(epd.getbuffer(rotated_image))
-    break
+
+    c.next()
