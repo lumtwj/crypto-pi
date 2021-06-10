@@ -38,4 +38,4 @@ while True:
 
     epd.display(epd.getbuffer(rotated_image))
 
-    c.next()
+    ci.next()
