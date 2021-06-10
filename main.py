@@ -12,25 +12,34 @@ epd = epd2in13_V2.EPD()
 epd.init(epd.FULL_UPDATE)
 epd.Clear(0xFF)
 
-chart = Chart()
-data = chart.load()
+c = Chart()
+data = c.load()
 
 w, h = 250, 122
 font = ImageFont.truetype(os.path.join('./assets/OpenSans-Bold.ttf'), 14)
 
 ci = CryptoIterator(data)
 while True:
-    chart = data[ci.get()]
+    d = Chart().load()
+    chart = d[ci.get()]
+
+    symbol = chart['symbol'].upper()
+    chart_path = chart['chart_path']
+    price = chart['price']
+    percentage_change = chart['percentage']
+
+    print(symbol, price, percentage_change)
+
     image = Image.new(mode='1', size=(epd2in13_V2.EPD_HEIGHT, epd2in13_V2.EPD_WIDTH), color=255)
     HRedImage = Image.new(mode='1', size=(epd2in13_V2.EPD_HEIGHT, epd2in13_V2.EPD_WIDTH), color=255)
     draw = ImageDraw.Draw(image)
 
     # draw chart
-    c = Image.open(chart['chart_path'])
+    c = Image.open(chart_path)
     image.paste(c, (0, 0))
 
     # draw text
-    text = chart['symbol'].upper() + '  $' + chart['price'] + '  ' + chart['percentage']
+    text = symbol + '  $' + price + '  ' + percentage_change
     tw, th = font.getsize(text)
     draw.text((10, h - th - 5), text, font=font, fill=0)
 

@@ -2,7 +2,7 @@ import time
 
 
 class CryptoIterator:
-    def __init__(self, data, interval=30):
+    def __init__(self, data, interval=60):
         self.index = 0
         self.length = len(data)
         self.interval = interval
