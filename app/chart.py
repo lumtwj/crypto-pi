@@ -20,8 +20,7 @@ class Chart:
         ax.spines['top'].set_visible(False)
         ax.margins(x=0)
 
-        fig.set_size_inches(5, 1.5)
-
+        fig.set_size_inches(2.0, 1.0)
         frame1 = plt.gca()
         frame1.axes.get_xaxis().set_ticks([])
 
