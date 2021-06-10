@@ -17,7 +17,7 @@ data = chart.load()
 w, h = 250, 122
 font = ImageFont.truetype(os.path.join('./assets/OpenSans-Bold.ttf'), 14)
 
-for chart in data:
+for chart in data[2:3]:
     image = Image.new(mode='1', size=(epd2in13_V2.EPD_HEIGHT, epd2in13_V2.EPD_WIDTH), color=255)
     HRedImage = Image.new(mode='1', size=(epd2in13_V2.EPD_HEIGHT, epd2in13_V2.EPD_WIDTH), color=255)
     draw = ImageDraw.Draw(image)
@@ -31,5 +31,7 @@ for chart in data:
     tw, th = font.getsize(text)
     draw.text((10, h - th - 5), text, font=font, fill=0)
 
-    epd.display(epd.getbuffer(image), epd.getbuffer(HRedImage))
+    rotated_image = image.rotate(180)
+
+    epd.display(epd.getbuffer(rotated_image))
     break
