@@ -18,7 +18,7 @@ w, h = 250, 122
 font = ImageFont.truetype(os.path.join('./assets/OpenSans-Bold.ttf'), 14)
 
 for chart in data:
-    image = Image.new(mode='1', size=(epd2in13_V2.EPD_HEIGHT, epd2in13_V2.EPD_WDITH), color=255)
+    image = Image.new(mode='1', size=(epd2in13_V2.EPD_HEIGHT, epd2in13_V2.EPD_WIDTH), color=255)
     HRedImage = Image.new(mode='1', size=(epd2in13_V2.EPD_HEIGHT, epd2in13_V2.EPD_WIDTH), color=255)
     draw = ImageDraw.Draw(image)
 
