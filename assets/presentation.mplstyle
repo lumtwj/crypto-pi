@@ -1,0 +1,3 @@
+figure.autolayout : True
+ytick.labelsize : 6
+lines.linewidth : 1

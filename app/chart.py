@@ -6,6 +6,12 @@ ctx = decimal.Context()
 ctx.prec = 20
 token_store = './output/tokens.json'
 
+plt.style.use('./assets/presentation.mplstyle')
+
+
+def mm_to_inch(mm):
+    return mm * 0.0393701
+
 
 class Chart:
     def __init__(self):
@@ -20,12 +26,12 @@ class Chart:
         ax.spines['top'].set_visible(False)
         ax.margins(x=0)
 
-        fig.set_size_inches(2.0, 1.0)
+        fig.set_size_inches(mm_to_inch(50.55), mm_to_inch(25.71))
         frame1 = plt.gca()
         frame1.axes.get_xaxis().set_ticks([])
 
         chart_path = './output/{symbol}.png'.format(symbol=symbol)
-        plt.savefig(chart_path.format(symbol=symbol), transparent=True, bbox_inches='tight')
+        plt.savefig(chart_path.format(symbol=symbol), transparent=True, bbox_inches='tight', dpi=130)
 
         price = y[-1]
         percentage = (price - y[0]) / y[0] * 100
