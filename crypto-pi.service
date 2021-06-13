@@ -1,0 +1,12 @@
+[Unit]
+Description=Crypto Pi Service
+After=multi-user.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/crypto-pi/
+ExecStart=/usr/bin/python3 /home/pi/crypto-pi/main.py
+
+[Install]
+WantedBy=multi-user.target
