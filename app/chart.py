@@ -17,7 +17,7 @@ class Chart:
     def __init__(self):
         self.data = []
 
-    def generate_line_chart(self, symbol, y):
+    def generate_line_chart(self, coin_id, symbol, y):
         x = [x for x in range(len(y))]
 
         fig, ax = plt.subplots()
@@ -30,8 +30,8 @@ class Chart:
         frame1 = plt.gca()
         frame1.axes.get_xaxis().set_ticks([])
 
-        chart_path = './output/{symbol}.png'.format(symbol=symbol)
-        plt.savefig(chart_path.format(symbol=symbol), transparent=True, bbox_inches='tight', dpi=130)
+        chart_path = './output/{coin_id}.png'.format(coin_id=coin_id)
+        plt.savefig(chart_path, transparent=True, bbox_inches='tight', dpi=130)
 
         price = y[-1]
         percentage = (price - y[0]) / y[0] * 100
