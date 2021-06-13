@@ -1,2 +1,2 @@
 cd ~/crypto-pi
-python fetch_crypto.py
+python3 fetch_crypto.py
