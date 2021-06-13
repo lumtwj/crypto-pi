@@ -12,21 +12,21 @@ epd = epd2in13_V2.EPD()
 epd.init(epd.FULL_UPDATE)
 epd.Clear(0xFF)
 
-c = Chart()
-data = c.load()
+chart = Chart()
+data = chart.load()
 
 w, h = 250, 122
 font = ImageFont.truetype(os.path.join('./assets/OpenSans-Bold.ttf'), 14)
 
-ci = CryptoIterator(data)
+crypto_iterator = CryptoIterator(data)
 while True:
-    d = Chart().load()
-    chart = d[ci.get()]
+    data = chart.load()
+    chart_data = data[crypto_iterator.get()]
 
-    symbol = chart['symbol'].upper()
-    chart_path = chart['chart_path']
-    price = chart['price']
-    percentage_change = chart['percentage']
+    symbol = chart_data['symbol'].upper()
+    chart_path = chart_data['chart_path']
+    price = chart_data['price']
+    percentage_change = chart_data['percentage']
 
     print(symbol, price, percentage_change)
 
@@ -35,8 +35,8 @@ while True:
     draw = ImageDraw.Draw(image)
 
     # draw chart
-    c = Image.open(chart_path)
-    image.paste(c, (0, 0))
+    chart_image = Image.open(chart_path)
+    image.paste(chart_image, (0, 0))
 
     # draw text
     text = symbol + '  $' + price + '  ' + percentage_change
@@ -47,4 +47,4 @@ while True:
 
     epd.display(epd.getbuffer(rotated_image))
 
-    ci.next()
+    crypto_iterator.next()
