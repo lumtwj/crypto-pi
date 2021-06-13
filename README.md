@@ -27,25 +27,21 @@ cd crypto-pi
 sudo apt-get install python3-matplotlib
 ```
 ## Setup
-### 1. Grant execution permission to `fetch_crypto_job.sh`
-```commandline
-chmod +x fetch_crypto_job.sh
-```
-### 2. Setup crontab
+### 1. Setup crontab
 ```commandline
 crontab -e
 ```
-### 3. Add the following line:
+### 2. Add the following line:
 ```commandline
 */5 * * * * /home/pi/crypto-pi/fetch_crypto_job.sh
 ```
 This schedule crypto-pi to fetch latest chart every 5 minutes
-### 4. Schedule crypto-pi to display chart on boot
+### 3. Schedule crypto-pi to display chart on boot
 ```commandline
 sudo cp crypto-pi.service /lib/systemd/system/crypto-pi.service
 sudo systemctl enable crypto-pi
 ```
-### 5. Start crypto-pi service
+### 4. Start crypto-pi service
 ```commandline
 sudo systemctl start crypto-pi
 ```
