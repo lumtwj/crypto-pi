@@ -1,7 +1,7 @@
 # Crypto-Pi
 Unique way of viewing cryptocurrency chart
 
-![alt text](./assets/rp0wh.jpg "Logo Title Text 1")
+![alt text](./assets/rp0wh.jpg "crypto-pi")
 
 ## Hardware
 1. Raspberry Pi Zero WH
