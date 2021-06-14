@@ -1,5 +1,13 @@
 # Crypto-Pi
 Unique way of viewing cryptocurrency chart
+
+![alt text](./assets/rp0wh.jpg "Logo Title Text 1")
+
+## Hardware
+1. Raspberry Pi Zero WH
+2. Waveshare 2.13 inch e-Paper HAT
+
+Only tested with the above combination
 ## Installation
 ### 1. Turn on SPI
 ```commandline
@@ -32,7 +40,7 @@ sudo apt-get install python3-matplotlib
 crontab -e
 ```
 ### 2. Add the following line:
-```commandline
+```text
 */5 * * * * /home/pi/crypto-pi/fetch_crypto_job.sh
 ```
 This schedule crypto-pi to fetch latest chart every 5 minutes
