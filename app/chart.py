@@ -68,7 +68,7 @@ class Chart:
 
         return self.data
 
-    def last_updated(self):
+    def get_last_updated(self):
         return self.last_updated
 
 
