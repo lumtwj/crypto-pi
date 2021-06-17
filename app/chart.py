@@ -36,7 +36,7 @@ class Chart:
         price = y[-1]
         percentage = (price - y[0]) / y[0] * 100
 
-        formatted_price = (float_to_str(price) if price < 0.01 else "{:.2f}".format(price))
+        formatted_price = (float_to_str(price) if price < 0.01 else "{0:,.2f}".format(price))
         formatted_percentage = "{:.1f}".format(percentage) + '%'
 
         self.data.append({
