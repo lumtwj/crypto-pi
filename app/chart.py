@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import decimal
 import json
+import time
+from datetime import datetime
 
 ctx = decimal.Context()
 ctx.prec = 20
@@ -16,6 +18,7 @@ def mm_to_inch(mm):
 class Chart:
     def __init__(self):
         self.data = []
+        self.last_updated = None
 
     def generate_line_chart(self, coin_id, symbol, y):
         x = [x for x in range(len(y))]
@@ -48,16 +51,25 @@ class Chart:
 
     def save(self):
         f = open(token_store, "w")
-        f.write(json.dumps(self.data))
+        f.write(json.dumps({
+            'data': self.data,
+            'last_updated': time.time()
+        }))
         f.close()
 
         return self.data
 
     def load(self):
         f = open(token_store, "r")
-        self.data = json.loads(f.read())
+        tokens = json.loads(f.read())
+        self.data = tokens['data']
+        last_updated = datetime.fromtimestamp(tokens['last_updated'])
+        self.last_updated = last_updated.strftime("%d %b %Y, %H:%M")
 
         return self.data
+
+    def last_updated(self):
+        return self.last_updated
 
 
 def float_to_str(f):
