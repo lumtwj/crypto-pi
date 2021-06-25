@@ -7,6 +7,7 @@ Type=simple
 User=pi
 WorkingDirectory=/home/pi/crypto-pi/
 ExecStart=/usr/bin/python3 /home/pi/crypto-pi/main.py
+ExecStop=/usr/bin/python3 /home/pi/crypto-pi/clear_display.py
 
 [Install]
 WantedBy=multi-user.target
