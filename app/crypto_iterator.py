@@ -13,7 +13,7 @@ class CryptoIterator:
             json_string = reader.read()
             json_data = json.loads(json_string)
             token_list = json_data["token_list"]
-            interval = json_data["interval"]
+            interval = json_data["interval"] 
 
         return token_list, interval
 

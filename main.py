@@ -13,7 +13,7 @@ epd = epd2in13_V2.EPD()
 epd.init(epd.FULL_UPDATE)
 epd.Clear(0xFF)
 
-crypto_iterator = CryptoIterator(interval=10)
+crypto_iterator = CryptoIterator()
 chart = Chart()
 
 w, h = 250, 122
