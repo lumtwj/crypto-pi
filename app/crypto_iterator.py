@@ -3,10 +3,9 @@ import json
 
 
 class CryptoIterator:
-    def __init__(self, interval=300):
+    def __init__(self):
         self.index = 0
-        self.token_list = CryptoIterator.load()
-        self.interval = interval
+        self.token_list, self.interval = CryptoIterator.load()
 
     @staticmethod
     def load():
