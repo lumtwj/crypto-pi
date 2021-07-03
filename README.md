@@ -35,21 +35,12 @@ cd crypto-pi
 sudo apt-get install python3-matplotlib
 ```
 ## Setup
-### 1. Setup crontab
-```commandline
-crontab -e
-```
-### 2. Add the following line:
-```text
-*/5 * * * * /home/pi/crypto-pi/fetch_crypto_job.sh
-```
-This schedule crypto-pi to fetch latest chart every 5 minutes
-### 3. Schedule crypto-pi to display chart on boot
+### 1. Schedule crypto-pi to display chart on boot
 ```commandline
 sudo cp crypto-pi.service /lib/systemd/system/crypto-pi.service
 sudo systemctl enable crypto-pi
 ```
-### 4. Start crypto-pi service
+### 2. Start crypto-pi service
 ```commandline
 sudo systemctl start crypto-pi
 ```
@@ -62,5 +53,12 @@ nano config.js
 ```json
 {
   "token_list": ["bitcoin", "ethereum"]
+}
+```
+### 3. Set interval to rotate token
+Interval unit in seconds
+```json
+{
+  "interval": 300
 }
 ```
