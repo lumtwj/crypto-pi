@@ -1,7 +1,5 @@
 import matplotlib.pyplot as plt
 import decimal
-import json
-import time
 from datetime import datetime
 
 ctx = decimal.Context()
@@ -11,16 +9,9 @@ token_store = './output/tokens.json'
 plt.style.use('./assets/presentation.mplstyle')
 
 
-def mm_to_inch(mm):
-    return mm * 0.0393701
-
-
 class Chart:
-    def __init__(self):
-        self.data = []
-        self.last_updated = None
-
-    def generate_line_chart(self, coin_id, symbol, y):
+    @staticmethod
+    def generate_line_chart(coin_id, y):
         x = [x for x in range(len(y))]
 
         fig, ax = plt.subplots()
@@ -42,34 +33,13 @@ class Chart:
         formatted_price = (float_to_str(price) if price < 0.01 else "{0:,.2f}".format(price))
         formatted_percentage = "{:.1f}".format(percentage) + '%'
 
-        self.data.append({
-            'chart_path': chart_path,
-            'symbol': symbol,
-            'price': formatted_price,
-            'percentage': formatted_percentage
-        })
+        last_updated = datetime.now().strftime("%d %b %Y, %H:%M")
 
-    def save(self):
-        f = open(token_store, "w")
-        f.write(json.dumps({
-            'data': self.data,
-            'last_updated': time.time()
-        }))
-        f.close()
+        return chart_path, formatted_price, formatted_percentage, last_updated
 
-        return self.data
 
-    def load(self):
-        f = open(token_store, "r")
-        tokens = json.loads(f.read())
-        self.data = tokens['data']
-        last_updated = datetime.fromtimestamp(tokens['last_updated'])
-        self.last_updated = last_updated.strftime("%d %b %Y, %H:%M")
-
-        return self.data
-
-    def get_last_updated(self):
-        return self.last_updated
+def mm_to_inch(mm):
+    return mm * 0.0393701
 
 
 def float_to_str(f):
