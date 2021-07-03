@@ -1,3 +1,4 @@
 {
-  "token_list": ["bitcoin"]
+  "token_list": ["bitcoin", "chainlink"],
+  "interval": 300
 }

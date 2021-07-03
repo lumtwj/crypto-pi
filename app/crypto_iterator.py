@@ -14,11 +14,12 @@ class CryptoIterator:
             json_string = reader.read()
             json_data = json.loads(json_string)
             token_list = json_data["token_list"]
+            interval = json_data["interval"]
 
-        return token_list
+        return token_list, interval
 
     def next(self):
-        self.token_list = CryptoIterator.load()
+        self.token_list, self.interval = CryptoIterator.load()
         self.index += 1
 
         if self.index >= len(self.token_list):
