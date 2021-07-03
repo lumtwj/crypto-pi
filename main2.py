@@ -36,16 +36,16 @@ try:
         HRedImage = Image.new(mode='1', size=(epd2in13_V2.EPD_HEIGHT, epd2in13_V2.EPD_WIDTH), color=255)
         draw = ImageDraw.Draw(image)
 
-        # draw text
-        tw, th = font.getsize(last_updated)
-        draw.text((w - tw, 0), last_updated, font=font, fill=0)
-
         # draw chart
         chart_image = Image.open(chart_path)
         image.paste(chart_image, (0, 0))
 
         # draw text
-        text = symbol + '  $' + price + '  ' + percentage_change
+        tw, th = font.getsize(last_updated)
+        draw.text((w - tw, 0), last_updated, font=font, fill=0)
+
+        # draw text
+        text = symbol.upper() + '  $' + price + '  ' + percentage_change
         tw, th = font.getsize(text)
         draw.text((10, h - th - 5), text, font=font, fill=0)
 
