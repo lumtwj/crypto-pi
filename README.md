@@ -48,7 +48,7 @@ sudo systemctl start crypto-pi
 ## Customising
 ### 1. Editing configuration file
 ```commandline
-nano config.js
+nano config.json
 ```
 ### 2. Adding more token
 ```json
