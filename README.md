@@ -46,6 +46,11 @@ sudo systemctl enable crypto-pi
 sudo systemctl start crypto-pi
 ```
 ## Customising
+For first time setup, create the sample configuration file
+```commandline
+cp config-sample.json config.json
+```
+
 ### 1. Editing configuration file
 ```commandline
 nano config.json
