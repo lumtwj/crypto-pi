@@ -22,6 +22,7 @@ sudo pip3 install RPi.GPIO
 ```
 ### 3. Install drivers for Waveshare display
 ```commandline
+sudo apt-get install git
 git clone https://github.com/waveshare/e-Paper.git
 pip3 install ./e-Paper/RaspberryPi_JetsonNano/python/
 ```
