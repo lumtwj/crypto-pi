@@ -8,6 +8,7 @@ from app.crypto_iterator import CryptoIterator
 from app.coingecko import Coingecko
 from PIL import Image, ImageDraw, ImageFont
 import os
+import subprocess
 
 epd = epd2in13_V2.EPD()
 epd.init(epd.FULL_UPDATE)
@@ -42,9 +43,15 @@ try:
             chart_image = Image.open(chart_path)
             image.paste(chart_image, (0, 0))
 
+            # Get battery life
+            battery_result = subprocess.check_output('echo "get battery" | nc -q 0 127.0.0.1 8423', shell=True)
+            battery_arr = battery_result.decode('utf-8').split()
+            battery_percent = '(' + str(int(float(battery_arr[-1]))) + '%)' if len(battery_arr) == 2 else ''
+
             # draw text
-            tw, th = small_font.getsize(last_updated)
-            draw.text((w - tw, 0), last_updated, font=small_font, fill=0)
+            text = '{last_updated} {battery_percent}'.format(last_updated=last_updated, battery_percent=battery_percent)
+            tw, th = small_font.getsize(text)
+            draw.text((w - tw, 0), text, font=small_font, fill=0)
 
             # draw text
             text = symbol.upper() + '  $' + price + '  ' + percentage_change
